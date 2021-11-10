@@ -145,6 +145,7 @@ The `Trace Cleansed Extracted Text` can also be used in search, conceptual, or c
 We are able to identify headers, footers, confidentiality segments, and deduplicative text that were removed during `AI Extracted Text Cleansing`.
 
 More information on the Viewer can be found [here](https://relativitydev.github.io/relativity-trace-documentation/docs/user_guide/review/reviewing_communications.html).
+![](media/trade_reconstruction/TraceAIViewerHighlight.png)
 
 **Statuses**
 
