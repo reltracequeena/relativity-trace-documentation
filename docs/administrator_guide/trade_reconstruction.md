@@ -2,7 +2,7 @@
 layout: default
 title: Trade Reconstruction
 parent: Administrator Guide
-nav_order: 12
+nav_order: 14
 
 
 ---
@@ -22,8 +22,6 @@ Trade Reconstruction is used to automatically link trade and orders from Order M
 
 Each Trade object has a connected Trade Reconstruction Configuration, which is used to add the criteria necessary to connect Trades to their related Communications. Trade Reconstruction Configruations have two components: the Search Criteria field, which defines the parameters of the saved search created for the Trade, and the Trade Keywords Field, which defines the Trade Keywords created for the Trade. Below is information on how to create a Trade Reconstruction Configuration, details on the Search Criteria field for Trade Reconstruction Configurations, details about Trade Keywords, and the limitations of Trade Reconstruction.
 
-
-
 ## Creating A Trade Reconstruction Configuration
 
 The Trade Reconstruction Configuration attached to your Trade is a key component to Trade Reconstruction, as it determines how Trades will be connected to their related communications. **This must be created before you can create your Trade**. To create a Trade Reconstruciton Configuration, follow the steps below:
@@ -31,15 +29,18 @@ The Trade Reconstruction Configuration attached to your Trade is a key component
 1. Naviagte to the `Trade Reconstruction Configurations` tab and click `New Trade Reconstruction Configuration`.
 
 	![](media/trade_reconstruction/trade_reconstruction_configuration_layout.PNG)
- 
+
 2. The Trade Reconstruction Configuration creation form has the following fields:
 
    1. **Name:** the name of the Trade Reconstruction Configruation
+   
    2. **Search Criteria:** required JSON field to create the search parameters for the Saved Search created and linked to the Trade during Reconstruction. The details of the proper search criteria can be accessed via Contextual Help button on the Configuration secontion. 
       - See the below section titled `Search Criteria for Trade Reconstruction Configuration` for more information
-   3. **Trade Keywords Field:** optional field, allows you to choose fields on the Trade object which will be used to create `Trade Keywords` that are linked to the Trade. Must be Multiple Object or Multiple Choice type fields.
-
-
+      
+   3. **Trade Keywords Field:** optional field, allows you to choose fields on the Trade object which will be used to create `Trade Keywords` that are linked to the Trade
+   
+      You can choose Trade fields of any field type. If you choose a Yes/No field, the`Yes Display Value` or `No Display Value` for that field will be used to create the `Trade Keyword`.
+      {: .info }
 
 ### Search Criteria for Trade Reconstruction Configuration
 
@@ -83,7 +84,7 @@ Trade Reconstruction Configuration Search Criteria field is inputted as JSON wit
 > - Each logic group must include a `SearchConditions` list (with at least one condition in it) and a `BooleanOperator`
 > - `DocumentFieldName`, `ObjectFieldName` or `Value`, `Condition` and `BooleanOperator` are mandatory fields in a search condition
 > - `DocumentFieldName` field must be a field which exists on Document or a reflected field, e.g. Trace Monitored Individuals::First Name
-> - `ObjectFieldName` field must be a field which exists on the Object Type associated with Rule Generator
+> - `ObjectFieldName` field must be a field which exists on the Trade Object
 > - `DocumentFieldName` and `ObjectFieldName` fields must have the same field type, with one exception:
 >   - `DocumentFieldName` fields with the field type single choice, multiple choice, single object, or multiple object can be mapped to `ObjectFieldName` fields with the fixed-length text field type
 > - if `DocumentFieldName` and `ObjectFieldName` fields are single/multiple object fields, then both fields must be associated with the same object type
@@ -137,16 +138,11 @@ Trade Reconstruction Configuration Search Criteria field is inputted as JSON wit
 ]
 ```
 
-
-
-
-
 ### Trade Keywords
 
 The `Trade Keywords Field` field on the `Trade Reconstruction Configuration` holds the names of the field on Trade which hold critical keywords that will be searched in the created saved search. 
 
 For example, there is a field on Trade called `Important Names` which is a Multiple Choice field. On a particular Trade, the names `John Smith` and `Jane Doe` are selected as choices on `Important Names` that are important for this Trade. To search for these names, you will select `Important Names` in the `Trade Keywords Field` on the `Trade Reconstruction Configuration` attached to the Trade. During Reconstruction, `John Smith` and `Jane Doe` will be created as Trade Keywords, which can be found on the `Trade Keywords` tab and will be attached to that Trade. If another Trade shares the same keyword, they will both be attached to that single keyword.
-
 
 ## Integration with Order Management Systems (OMS) or Trade Capture Systems
 Please contact [support@relativity.com](mailto:support@relativity.com) for more information on Trade system integrations.
@@ -156,7 +152,7 @@ Please contact [support@relativity.com](mailto:support@relativity.com) for more 
 You must create a Trade Reconstruction Configruation before you can create a Trade.
 {: .info }
 
-If you decide to Reconstruct a Trade which has already been Reconstructed in the past, everything is removed from the previous Reconstruction and replaced with the new information from the most recent Reconstruction. `Trade Keywords` are not deleted, but the connection between the `Trade Keyword` and the Trade is gone and will not be searched for (unless the same keyword is still on the Trade, in which it will re-establish the connection and search for this keyword). All of the Trade's Related Documents from the previous Reconstruction will be removed.
+If you decide to Reconstruct a Trade which has already been Reconstructed in the past, everything is removed from the previous Reconstruction and replaced with the new information from the most recent Reconstruction. `Trade Keywords` are not deleted, but the connection between the `Trade Keyword` and the Trade is gone and will not be searched for (unless the same keyword is still on the Trade, in which it will re-establish the connection and search for this keyword). All of the Trade's Related Documents from the previous Reconstruction will be removed. However, an Audit will be created for each Reconstruction with the following information: the Artifact ID of the Reconstructed Trade, the User that kicked off the Reconstruction, the date and time the Reconstruction began, and the Artifact ID of every Related Document that was connected to the Trade.
 {: .danger}
 
 You must run each Trade indiviudally - mass editing `Perform Reconstruction` field on the Trade will not start Trade Reconstruction.

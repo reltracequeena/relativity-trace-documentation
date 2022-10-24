@@ -19,337 +19,220 @@ A Data Source allows you to define where and how you are pulling data from a com
 ---
 
 ## Overview
- A Data Source stores the configuration necessary to retrieve data from a communicaiton channel, process that data, and ingest it into Relativity Trace. Data Sources reference an Ingestion Profile that holds configuration on how to import data for that Data Source (data mappings). Data Batches reference Data Source to dynamically lookup the Ingestion Profile to use during import.
+ A Data Source stores the configuration necessary to retrieve data from a communication channel, process that data, and ingest it into Relativity Trace. **Click on the Data Source name to see more extensive details.**
 
-Ingestion Profiles are susceptible to corruption by modification of Relativity Fields and Data Mappings which are referenced in the profile.  Any time a Relativity Field or Data Mapping which is used in an Ingestion Profile is edited or deleted, it is imperative to validate the integrity of each of the related Ingestion Profiles. Automatic validation occurs during the Data Retrieval task and may cause a data source to be automatically disabled if it is found to have been corrupted.
-{: .warn }
+## Data Sources List
+This list covers the most common Data Sources. To better understand the holistic Data Source support contact [support@relativity.com](mailto:support@relativity.com).
 
-![image-20210909142404893](media/data_sources/image-20210909142404893.png)
+### Generic Data Sources
 
-![Credentials Tab](media/data_sources/9631ef5e-4ec9-4096-8c52-0af0377437fc_annotated.png)
+| Type    | Data Source        | Notes|
+|:-------:|:------------------:|----------------|
+| Generic | EML Drop | For deliverying daily EML exports from various systems |
+| Generic | Mailbox with 3rd part data | For deliverying data from mobile (and others) providers who delivery their data to a mailbox |
+| Generic | [Zip Drop]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/generic_data_sources/zip_drop.md %}) | For already processed structured data |
+| Generic | [Generic Audio Data]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/voice_data_sources/generic_audio_data.md %}) | For audio data |
+| Generic | [Monitored Individuals from any source using Trace ZipDrop]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/monitored_individual_data_sources/monitored_individuals_via_zipdrop_data_source.md %}) |  |
+
+
+### Email Data Sources
+
+| Type  | Data Source      |
+|:-------:|:------------------:|
+| Email | [Microsoft O365 Email and Calendar]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/email_data_sources/office_365_email_and_calendar_via_collect.md %}) |
+| Email | [Microsoft O365 Mail Archive Mailbox]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/email_data_sources/microsoft_office_365_mail_archive_mailbox.md %}) |
+| Email | [Google Suite]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/email_data_sources/google_gsuite_via_collect.md %}) |
+| Email | [Bloomberg Mail]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/email_data_sources/bloomberg_mail_via_collect.md %}) |
+| Email | [Microsoft Exchange Server]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/email_data_sources/microsoft_exchange_server_via_verqu.md %}) |
+
+### Chat Data Sources
+
+| Type  | Data Source      |
+|:-------:|:------------------:|
+| Chat | [Bloomberg Chat and PChat]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/chat_data_sources/bloomberg_chat_pchat_via_collect.md %}) |
+| Chat | [ICE Chat]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/chat_data_sources/ice_chat_via_collect.md %}) |
+| Chat | [Refinitiv Eikon Chat]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/chat_data_sources/refinitiv_eikon_chat_and_fxt_via_collect.md %}) |
+| Chat | Symphony |
+| Chat | Skype for Business |
+| Chat | [Microsoft O365 Teams Chat]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/chat_data_sources/microsoft_office_365_teams_chat_via_collect.md %}) |
+| Chat | FXConnect |
+| Chat | [Cisco WebEx Teams Chat]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/chat_data_sources/cisco_webex_teams_via_collect.md %}) |
+| Chat | ServiceNow |
+| Chat | Google Chat |
+| Chat | Salesforce Chatter |
+| Chat | [Slack Enterprise Chat]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/chat_data_sources/slack_enterprise_via_collect.md %}) |
+| Chat | Microsoft Yammer |
+| Chat | Facebook Workplace |
+| Chat | YieldBroker |
+
+### Voice Data Sources
+
+| Type  | Data Source      |
+|:-------:|:------------------:|
+| Voice | Zoom Audio |
+| Voice | Symphony Audio |
+| Voice | WebEx Teams Audio |
+| Voice | Vodafone |
+| Voice | Avaya |
+| Voice | Cloud 9 |
+| Voice | Verba/Verint |
+| Voice | Mitel |
+| Voice | Liquid Voice |
+| Voice | O2 |
+| Voice | Microsoft Teams Audio |
+| Voice | Skype for Business Audio |
+| Voice | [Generic Audio Data]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/voice_data_sources/generic_audio_data.md %}) |
+
+
+### Mobile Data Sources
+
+| Type  | Data Source      | Notes |
+|:-------:|:------------------:|--------------------|
+| Mobile | WhatsApp | Trace supports picking up this data from customer's mailbox. In other words, this data will be delivered to customer's mailbox and then picked up by Trace from the mailbox |
+| Mobile | WeChat | Trace supports picking up this data from customer's mailbox. In other words, this data will be delivered to customer's mailbox and then picked up by Trace from the mailbox |
+| Mobile | SMS/MMS | Trace supports picking up this data from customer's mailbox. In other words, this data will be delivered to customer's mailbox and then picked up by Trace from the mailbox |
+| Mobile | iMessage | Trace supports picking up this data from customer's mailbox. In other words, this data will be delivered to customer's mailbox and then picked up by Trace from the mailbox |
+| Mobile | Telegram | Trace supports picking up this data from customer's mailbox. In other words, this data will be delivered to customer's mailbox and then picked up by Trace from the mailbox |
+| Mobile | Signal | Trace supports picking up this data from customer's mailbox. In other words, this data will be delivered to customer's mailbox and then picked up by Trace from the mailbox |
+
+### Collaboration Data Sources
+
+| Type  | Data Source      |
+|:-------:|:------------------:|
+| Collaboration | OneDrive for Business |
+| Collaboration | SharePoint |
+| Collaboration | Google Drive |
+| Collaboration | Box |
+| Collaboration | AWS S3 |
+| Collaboration | Dropbox |
+
+### Archive Data Sources
+
+| Type | Data Source      | Notes |
+|:----:|:------------------:|--------------------|
+| Archive | [Proofpoint]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/archive_data_sources/proofpoint_via_verqu.md %}) |  |
+| Archive | [Enterprise Vault]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/archive_data_sources/veritas_enterprise_vault_on_premises_via_verqu.md %}) |  |
+| Archive | Smarsh | Data must be recieved via Scheduled Export configured by the archive |
+
+### People / HR Data Sources
+
+In Trace People / HR data is refered to as `Monitored Individuals`. A Monitored Individual is a person within the organization whose communications are being analyzed for misconduct.
+
+`Monitored Individuals` are used as a unit of billing by Relativity Trace. Generally a Relativity Trace license will specify a number of Monitored Individuals available and the number of data sources they can be used on.
+
+|         Type         |                         Data Source                          |
+| :------------------: | :----------------------------------------------------------: |
+| Monitored Individual | [Microsoft Azure Active Directory]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/monitored_individual_data_sources/monitored_individual_auto_sync_azure_active_directory_via_collect.md %}) |
+| Monitored Individual | [Microsoft Active Directory]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/monitored_individual_data_sources/monitored_individual_auto_sync_active_directory_via_verqu.md %}) |
+| Monitored Individual | [Monitored Individuals from any source using Trace ZipDrop]({{ site.baseurl }}{% link docs/administrator_guide/collection/all_data_sources/monitored_individual_data_sources/monitored_individuals_via_zipdrop_data_source.md %}) |
+
+## Data Source Details
 
 ### Sections of a Data Source
 
 1. **General**: this tab houses general identifying information and status for the data source. These fields are described in further detail below.
-   * **Name:** The name of Data Source
-   * **Data Source Type:** Type of the data source
 
-   * **Ingestion Profile:** Ingestion Profile used to load data from this Data Source
-* **Start Date:** Date from which data will be pulled/pushed into Relativity
-* **End Date:** Optional date to which data will be pulled/pushed into Relativity.
-  
-* **Last Runtime (UTC):** The timestamp when this Data Source was last executed
-  
-   * **Status:** The last status message recorded by the Data Source
+    * **Data Source Type:** Type of the data source
+    * **Name:** The name of the Data Source
+    * **Document Type Name:** A non-required name that will propagate to the Trace Type field on the documents that come in through this Data Source
+      * If this field is left empty, the name of the Data Source will be used instead
+    * **Provider Type:** The type fo communications that are being collected (Audio, Written, etc.)
+    * **Ingestion Profile:** Ingestion Profile used to load data from this Data Source
+    * **Start Date:** Date from which data will be pulled/pushed into Relativity
+    * **End Date:** Optional date to which data will be pulled/pushed into Relativity.
 
-   * **Last Error Date:** Timestamp of the last time this Data Source failed, if it happened recently (based on Last Error Retention in Hours setting under Data Source Specific Fields)
-   
-   * **Last Error:** Error message from the last time this Data Source failed, if it happened recently (based on Last Error Retention in Hours setting under Data Source Specific Fields)
-2. **Credentials:** this tab is used to securely input and store credential information. This includes username and password as well as OAuth client secrets, should they be used. Not all Data Sources require credential information.
-   
-    * **Username:** Optional field used for authentication of a data source.
+      - If both dates are present, data between **Start Date** and **End Date** will be collected. If **Ingestion State** is later than **Start Date**, then only data between **Ingestion State** and **End Date** will be collected.
+      - If **Start Date** is present but **End Date** is empty, data between **Start Date** and **Now** will be collected. If **Ingestion State** is later than **Start Date**, then only data between **Ingestion State** and **Now** will be collected.
+      - If **Start Date** is empty but **End Date** is present, data between **Ingestion State** and **End Date** will be collected.
+      - If neither **Start Date** nor **End Date** is present, data between **Ingestion State** and **Now** will be collected.
+      - See [Data Retrieval](https://relativitydev.github.io/relativity-trace-documentation/docs/administrator_guide/collection/general_data_source_information/common_collect_data_source_functionality.html#data-retrieval) for more details.
+      {: .info}
     
-    * **Password:** Optional field used for authentication of a data source.
-    
-    * **AIP Client Secret:** Optional field used for authentication of AIP decryption using OAuth. See [Trace and Azure Information Protection](#trace-and-azure-information-protection) for more information. 
-    
-    * **EWS Client Secret:** Optional field used for authentication of exchange email retrieval using OAUT.
-    
-      > EWS Client Secret is used only on Microsoft Exchange type Data Sources. See [Microsoft Exchange Data Source](#microsoft-exchange-data-source) for specifics on authentication.
+    * **Last Runtime (UTC):** The timestamp when this Data Source was last executed
+    * **Enabled Time:** The timestamp when this Data Source was last enabled
+    * **Disabled Reason:** An explanation for why a data source was automatically disabled by the system
+    * **Status:** The last status message recorded by the Data Source
+    * **Last Error Date:** Timestamp of the last time this Data Source failed, if it happened recently (based on Last Error Retention in Hours setting under Data Source Specific Fields)
+    * **Last Error:** Error message from the last time this Data Source failed, if it happened recently (based on Last Error Retention in Hours setting under Data Source Specific Fields)
+
+2. **Settings**: Configures standard settings required for the specific Data Source Type. These settings can be found on specific data source documentation pages.
+
 3. **Trace Monitored Individuals:** Configures which monitored individual’s data should be retrieved from the data source. See [Monitored Individuals](#monitored-individuals) for more information.
+
 4. **Data Transformations:** Determines which data transformations to apply to documents prior to ingestion into Relativity by this data source. See [Data Transformations](#data-transformations) for more information.
+
 5. **Data Batches:** The data batches which have been generated by this data source. See [Data Batches](#data-batches) for more information.
-6. **Data Source Specific Settings**: Different data source types have different configuration options. This section updates dynamically to allow access to these configuration options. See [Data Source Specific Settings](#data-source-specific-settings) and the documentation of your specific Data Source Type for more information.
+
+6. **Advanced Configuration**: Different data source types have different configuration options. This section updates dynamically to allow access to these configuration options. See [Advanced Configuration](#advanced-configuration) and the documentation of your specific Data Source Type for more information.
+
 7. **Console**
    
     - **Enable/Disable Data Source:** Enables (or disables) data retrieval for a particular data source.
     - **Reset Data Source:** Disables *and* resets data source to retrieve data from the specified Start Date. 
-    
-      > Depending on Import settings, enabling a reset Data Source could duplicate data in the Workspace.
+
+      Depending on Import settings, enabling a reset Data Source could duplicate data in the Workspace.
       {: .info }
 
-### Data Source Specific Settings
+8. **Advanced Configuration**
 
 This section contains additional settings which are not associated with specific Relativity Fields. The settings described here are common across all Data Source Types. Type-specific settings are documented under their respected Data Source sections.
 
--   **Password Bank** Used to specify known passwords to attempt while encountering protected native files. Multiple passwords can be separated by the pipe character, `|`. Passwords containing the pipe character are supported through escaping the pipe character with a second pipe. Pipes are always escaped left to right.
-    
-    > **Example Password Bank:** `passw0rd|Trace1234!|aaa|bb|cccc||dd||eee|||ff|||ggg||||hhh|||||`
-    >
-    > Yields the following passwords:
->
-    > * `passw0rd`
-    > * `Trace1234!`
-    > * `aaa`
-    > * `bb`
-    > * `cccc|dd|eee|`
-    > * `ff|`
-    > * `ggg||hhh||`
+- **Aip Application Id:** This parameter is deprecated. Leave it empty.
+- **Aip Tenant Id:** This parameter is deprecated. Leave it empty.
+- **Frequency In Minutes:** Number of minutes worth of data to pull for each attempted data pull via Data Retrieval Task.
+- **Merge Batches During Cold Start:** When set to **True** it will merge initial Data Batches into ont, big Data Batch.
+- **Max Number Of Batches To Merge:** Input Value to control number of hours collected per Data Batch created, dependent on Frequency in Minutes value. This parametr is used when **Merge Batches During Cold Start** is set to **True**.
+
+See [Data Retrieval](https://relativitydev.github.io/relativity-trace-documentation/docs/administrator_guide/collection/general_data_source_information/common_collect_data_source_functionality.html#data-retrieval) for more details about **Frequency In Minutes**, **Merge Batches During Cold Start** and **Max Number Of Batches To Merge**.
+{: .info}
+
+- **Collect Job Timeout In Minutes:** 1440 (default) – Time interval after which a Data Batch will be automatically moved from Retrieving to Abandoned state.
+- **Collection Period Offset In Minutes:** 0 (default) – Modify Collection Period by adding offset in minutes to both Start and End Date. This parameter is used to collect data that are available to be retrieved with some delay e.g. 24 hours.
+- **Only Retrieve Natives And Copy To Folder:** Relative path to the fileshare folder (e.g. **BloombergMailDrop\Drop**). This parameter is used to improve performance of ingesting big portion of data e.g. 300,000 files (typical scenario for Bloombertg Chat and Mail). When the parameter is set, the Data Source will only retrieve files and store those files in the given folder. Neither enrichmnet nor ingestion will be performed on those files. To complete enrichment and ingestion, another Data Source (Globanet type of Data Source) needs to be created and configured to point to the folder. Eventually, there will be two Data Sources:
+  - Retrieving - For retrieving files via Collect.
+  - Pocessing - for enriching and ingestion those files in smaller chunks (1000 files each).
+- **Password Bank** Used to specify known passwords to attempt while encountering protected native files. Multiple passwords can be separated by the pipe character, `|`. Passwords containing the pipe character are supported through escaping the pipe character with a second pipe. Pipes are always escaped left to right.
+  
+  **Example Password Bank:** `passw0rd|Trace1234!|aaa|bb|cccc||dd||eee|||ff|||ggg||||hhh|||||`
+    Yields the following passwords:
+      - `passw0rd`
+      - `Trace1234!`
+      - `aaa`
+      - `bb`
+      - `cccc|dd|eee|`
+      - `ff|`
+      - `ggg||hhh||`
 
 - **Extraction Thread Count:** The number of documents to extract in parallel.
-
-- **Enrich Documents:** Whether or not to extract metadata and children from original documents. Valid values: 
-
-  -   `true`
-  -   `false`
-
+- **Enrich Documents:** Whether or not to extract metadata and children from original documents. Valid values: `true` or `false`
 - **Embedded File Behavior:** Embedded files are defined as attachments without file names. Most commonly these are in-line images. This setting changes the import behavior for embedded files. Valid options are:
+  - **`Import`** - Import all embedded files (top level and child) as separate documents in Relativity Trace.
+  - **`DoNotImportFromAttachments`** - Import embedded files from top level documents *only*. Do not extract embedded files from child documents.
+  - **`DoNotImport`** - Do not import any embedded files.
 
-  -   **`Import`** - Import all embedded files (top level and child) as separate documents in Relativity Trace.
-  -   **`DoNotImportFromAttachments`** - Import embedded files from top level documents *only*. Do not extract embedded files from child documents.
-  -   **`DoNotImport`** - Do not import any embedded files.
->   Both the `Import` and `DoNotImportFromAttachments` settings will greatly increase document volumes in Relativity Trace.
-{: .info}
+      Both the `Import` and `DoNotImportFromAttachments` settings will greatly increase document volumes in Relativity Trace.
+      {: .info}
 
 - **Discover Monitored Individuals:** See [Discovery of Monitored Individuals](#discovery-of-monitored-individuals)
 - **Include Monitored Individuals Not Linked to Data Source:** See [Discovery of Monitored Individuals](#discovery-of-monitored-individuals)
 - **Discover Monitored Individuals Ignores Case:** See [Discovery of Monitored Individuals](#discovery-of-monitored-individuals)
 - **Last Error Retention In Hours:** The length of time to persist any message in the `Last Error` field.
-- **Aip Application Id:** See [Trace and Azure Information Protection](#trace-and-azure-information-protection) 
-- **Aip Tenant Id:** See [Trace and Azure Information Protection](#trace-and-azure-information-protection)
+- **Health Check Failure Window Length in Minutes:** See [Data Source Auto-Disable] (#data-source-auto-disable)
 
-### Data Source State Serialization
-
-Globanet and Zip Drop Data sources created in Trace serialize their current state as a JSON file at regular intervals. This data is designed to be retrieved by the Trace Shipper Service to facilitate integrations with external data sources. 
-
-The serialized data source file is saved in {Source/Drop Folder}\Config\DataSourceState.json, where {Source/Drop Folder} is the configured source or drop folder for the given data source. If the data source has been deleted, the deleted field is set to True in the JSON file and the file will no longer be updated. 
-
-All fields for a data source, including Data Source Specific Fields, are saved except fields including personal/private information (such as passwords and secrets). Different fields are set to be excluded depending on the type of data source. 
-Data source state serialization currently excludes the following fields from being saved:
-
-- Username
-- Password
-- Password Bank
-- Aip Client Secret
-- Aip Application Id
-- Aip Tenant Id
-- Exchange Url
-- Exchange Authorization Client Id
-- Exchange Authorization Tenant Id
-- EWS Client Secret
-- Drop Folder Path
-
-Other data source types can serialize their state as well, if this functionality is needed please contact support@relativity.com.
-{: .info }
+- **Ingestion State:** Timestamp of last Data Source execution.
+This parameter is only visible on **Data Source Layout (dev)** Layout.
+{: .info}
 
 ### Data Source Auto-Disable
 
 Trace will automatically disable data sources that are identified as unhealthy or have critical configuration errors that will require intervention by the user. Trace will automatically disable a data source for the following reasons:
 
-- Data source has not had any successful data batches in a configured amount of time (default 24 hours)
+- Data source has not had any successful data batches in the number of minutes configured on the `Health Check Failure Window Length in Minutes` field (if not set, default is 24 hours)
 - Globanet data source is enabled without enabling Globanet (Merge1) at the workspace level
 
-Auto-disabled data sources will have their Disabled Reason field populated to show that it was disabled by the system. The data source will also have error details outlining the failures that caused the system to disable it. 
+Auto-disabled data sources will have their Disabled Reason field populated to show that it was disabled by the system. The data source will also have error details outlining the failures that caused the system to disable it.
 
-### Microsoft Exchange Data Source
-{: .d-inline-block }
-
-Deprecated 
-{: .label .label-red }
-
-The Microsoft Exchange Data Source enables Relativity to automatically pull emails from a Microsoft Exchange instance (Office 365 or On Premises) into Relativity. The Microsoft Exchange Data Source is executed by the Data Retrieval task (seen on the Setup tab). Note, this Data Source only pulls emails at this
-time, if you need to retrieve other object types from Microsoft Exchange please contact [support@relativity.com](mailto:support@relativity.com).
-
-**Data Flow Overview**
-
-![image-20200120151709677](media/data_sources/image-20200120151709677.png)
-
-**Setup**
-
-**Step 1: Create Ingestion Profile**
-
->   Refer to **[Appendix C](#appendix-c-create-email-fields-data-mappings-and-ingestion-profile)**
-
-**Step 2: Adjust Office 365 permissions**
-
-Settings for On Premises exchange are very similar to Office 365. Setting user permissions only applies if you are using Basic Authentication or OAuth Resource Owner Password Credential Grant (see authorization.md for more details).
-{: .info }
-
-1.  Log into the Office 365 Admin Center
-
-2.  Adjust Administration Exchange settings:
-
-    ![](media/data_sources/0fd5f7977b9d30dbb67296d148efc4c5.png)
-
-3.  Under Admin Roles create (or update if exists) Discovery Management role:
-
-    ![](media/data_sources/857028bf0af361bf0d37d007d8e08672.png)
-
-4.  Ensure the account you use to authenticate with includes “Application
-    Impersonation”, “Legal Hold”, “Mailbox Import Export” and “Mailbox Search”
-    roles:
-   
-   ![](media/data_sources/aff48bb585413bf91fa03d1649933aab.png)
-
-5. (Optional) Adjust password expiration permission for the account used for Trace
-
-     https://docs.microsoft.com/en-us/office365/admin/add-users/set-password-to-never-expire?view=o365-worldwide#set-the-password-expiration-policy-for-individual-users
-
-**Step 3: Create a Microsoft Exchange Data Source**
-
-1.  Go to the Trace:Data Sources Tab and Click the “New Data Source” Button
-
-2.  Set the Name = “*Microsoft Exchange*” (for example)
-
-3.  Select Data Source Type: “Microsoft Exchange”
-
-    ![](media/data_sources/45f8a402b934539e3a94ed74d11081b3.png)
-
-4.  Select Ingestion Profile created in Step 1
-
-5.  Set the required credentials depending on your authentication method (see authorization.md for more details).
-    
-7.  Set Start Date to the earliest email timestamp you would like imported (UTC
-    time)
-
-8.  Optionally set End Date to the latest email timestamp you would like imported (UTC
-    time)
-    
-9.  Under Data Source Specific Fields, set Exchange Settings - Url and Exchange
-    Settings - Version (there are a lot of other settings that can be
-    configured, but the default values are fine, please contact us if you would
-    like more information)
-    ![image-20200817121923967](media/data_sources/image-20200817121923967.png)
-    
-1.  *Exchange Settings – Url* gives you the chance to specify the exact URL used when connecting to your exchange server. If this field is left blank, Microsoft’s Autodiscover technology will be used to populate the field with a URL based on the credentials provided in the Username and Password fields. Autodiscover is typically a suitable option and works for Office 365 and many on premises solutions but it is not guaranteed to work.
-    
-        If Autodiscover fails, specify this URL in the field: https://outlook.office365.com/EWS/Exchange.asmx ( OR https://YOUR_EXCHANGE_SERVER_URL/EWS/Exchange.asmx)
-    
-2. *Exchange Settings - Version* allows you to specify the version of your exchange server. For Office 365, the default is the correct choice. For on premises servers, provide the correct version. It needs to be an exact match to one of the options, filling it out incorrectly will provide a list of all of the options available in the error message at the top of the page: Exchange2007_SP1, Exchange2010, Exchange2010_SP1, Exchange2010_SP2, Exchange2013, Exchange2013_SP1
-   
-10. *Exchange Settings - Exclude Microsoft Teams Chat* indicates whether Trace will ignore any Microsoft Teams chat messages being stored in a Monitored Individual's folders in Outlook as a part of O365. The default behavior is to pull data from the Teams Chat folder, but users may want to exclude these folders if Teams data is being pulled from a different data source or the data should not be pulled at all.
-
-11. Click “Save”
-
-12. Link / Create New Monitored Individuals (same page after clicking Save)
-
-    ![](media/data_sources/85e99ebffc8ada7ae4c69a61cb873213.png)
-
-    1.  Click `New` if the monitored individual is not already defined on another Data Source, or “Link” if the user has already been monitored in the past
-    
-2.  Microsoft Exchange Data Source will only pull data for linked Monitored Individuals (by identifier field: email address)
-    
-    3.  Once everything is set up, click the Enable Data Source button on the upper right to begin pulling data
-
-**Content**
-
-The Microsoft Exchange Data Source works by pulling content directly from an Exchange Server instance (Office 365 or On Premises) using Exchange Web Services (EWS). The Data Source downloads the native (.eml) email files and then extracts all information including email metadata, email body text, native attachments and their metadata. Container attachment file types (zips and similar archives) are automatically extracted into individual documents – e.g. zip with 10 word (.docx) documents = 11 Relativity documents. In addition, images from email content and each individual document are automatically expanded into separate Relativity documents. 
-
-The Microsoft Exchange data source only retrieves emails. It does not retrieve other exchange metadata at this time.
-{: .info }
-
-Please, refer to [Appendix B: Trace Document Extraction Fields](#appendix-b-trace-document-extraction-fields) for field descriptions.
-
-### Zip Drop Data Source
-
-The Zip Drop Data Source Type allows Relativity Trace to import of fully formed data batches (documents, extracted text and associated metadata) in the form of ZIP files dropped into a defined Drop Folder on the Relativity workspace file share. The Zip Drop Data Source Type is particularly useful for data like audio where partners produce data in its final state (natives, extracted text and metadata) and need a simple way to get it into Relativity Trace without making any API calls. The Zip Drop Data Source Type meets this need by monitoring the drop folder and pulling every ZIP file placed there into the system as a new Data Batch. The Zip Drop Data Source Type works especially well when combined with the Trace Shipper Service, which can be used to deliver archived data batches from servers outside of the Relativity instance directly to the drop folder where they are consumed by the Zip Drop Data Source.
-
-**Configuration**
-
-![image-20200713143244403](media/data_sources/image-20200713143244403.png)
-
-Configuration for the Zip Drop Data Source is pretty simple. There are no credentials or start date required. In fact, there are only a few things that need to be set up:
-
-- **Drop Folder Path** - Path where ZIP files will be retrieved by the data source, relative to the root of the file share for the workspace (beneath the EDDSXXXXXX folder). The Drop Folder does not need to exist when settings are saved as it will be created automatically. If the file path does not resolve to a location within the file share for the workspace, an error will be thrown.
-- **Ingestion Profile** - See Appendix C for more information on Ingestion Profiles.
-
-**ZIP File Format**
-
-The following requirements must be met by any ZIP file imported by the Zip Drop Data Source:
-
-- The name of the ZIP file is the name of the Data Batch that will be created, and should be unique
-- There must be a CSV load file at the root of the ZIP file named "loadfile.dat"
-- There should be no other files at the root of the ZIP file except for "loadfile.dat"
-- All native files should be in a folder named "OriginalNatives" at the root of the ZIP file
-- All extracted text files should be in a folder named "ExtractedData" at the root of the ZIP file
-- There should be no folders at the root of the ZIP file except for "OriginalNatives" and "ExtractedData"
-- The CSV load file "loadfile.dat" must contain columns named "Trace Monitored Individuals", "Trace Document Hash", and "Trace Data Batch" in addition to the other columns and data mappings that are required by every Relativity Trace data source
-
-Files imported by the Zip Drop Data Source do not need to have the extension .ZIP.
-{: .info }
-
-**Drop Folder**
-
-The Drop Folder is the place on the file share where ZIP files full of documents and metadata should be placed. The Zip Drop Data Source will discover ZIP files, extract them to a different location, and then delete each ZIP file from the Drop Folder so that the next file can be processed. The Zip Drop Data Source attempts to extract every file in the Drop Folder, regardless of extension. Only one file is processed at a time, so the file is always moved or deleted after a single attempt to guarantee throughput. 
-
-When selecting a file to import, the Zip Drop Data Source will always start with the oldest file present in the Drop Folder. If the file name contains "_inprogress", the file will be skipped. This convention allows integration partners a failsafe way to indicate a file is still being transmitted to avoid failures where extraction is attempted before the file is fully written. The file can then be renamed when it is fully written. As an additional safety measure, the Zip Drop Data Source will obtain and release a write lock on any file before attempting to extract it. If a write lock cannot be obtained, the file will be skipped under the assumption that it is still being written.
-
-**Zip Drop Data Batches**
-
-Once a ZIP file is extracted, a Data Batch RDO is created. The name of the Data Batch RDO will be the same as the name of the ZIP file, minus the extension. If a Data Batch RDO with that name already exists, the name will be adjusted to contain the duplicate count in parentheses (eg. Data Batch (2)). The load file will be adjusted automatically so that the documents within are associated with the correct Data Batch by name.
-
-Once created, the Data Batch RDO will be given a status of ReadyForImport. Because of this, Zip Drop Data Sources do not support Data Enrichment - the load file in the ZIP must already contain all of documents, extracted text and metadata needed for the Data Batch. However, Data Transformations occur prior to import and therefore are supported for the Zip Drop Data Source.
-
-**Failure Scenarios**
-
-There are a few different unique failure scenarios for the ZIP Drop Data Source. Regardless of the scenario, every file placed in the Drop Folder will result in a Data Batch RDO and the dropped data will not be lost.
-
-The first scenario is if a file placed in the Drop Folder cannot be extracted. This is most common if the file is not actually a ZIP file. In this case, a Data Batch RDO will be created in CompletedWithErrors status with error details and the file will be moved to a FailedToExtract folder within the Drop Folder. The only way to retry a file in this scenario is to manually move it back to the Drop Folder. In the event that multiple files with the same name fail to be extracted, only the most recent file with a given name will be retained in the FailedToExtract folder, so please make sure that ZIP files containing unique data have unique names.
-
-The second scenario is that the ZIP file (or the load file it contains) does not match the requirements specified above in "Zip File Format". In this case, a Data Batch RDO will be created in CompletedWithErrors status explaining the error and the ZIP file will be extracted to the normal data batch folder location on the file share, just as if it had been a healthy data batch. The load file will exist at the load file path on the Data Batch RDO as long as it was included in the ZIP file. It is possible to retry Data Batches in this state using the Data Batch Retry console button, but the files will need to be modified in the extracted data batch folder on the file share to meet the requirements or the Data Batch will just fail again. In most cases it is better to just Abandon the Data Batch and drop a corrected ZIP file in the Drop Folder.
-
-All other Data Batch failure scenarios with the ZIP Drop Data Source occur once the ReadyForImport status is reached and are not unique to this data source type. Please reference the rest of this documentation for more details on other requirements for Data Ingestion using Relativity Trace.
-
-**Monitored Individuals CSV**
-
-ZIP Drop Data Source will export its configured Monitored Individuals in CSV format every time the Drop Folder is checked for new files. The CSV will be located at `(Drop Folder)\Config\monitored_individuals.csv`.
-
-### Relativity Native Data Extraction Data Source
-
-This Data Source allows for automatic text extraction/expansion of previously ingested documents with natives in Relativity. This data source will automatically extract text, metadata and any children documents from containers/archives for all documents in the workspace with *Trace Data Enrichment Needed* field set to *Yes* and where Trace is able to locate the Native file on disk:
-
-![](media/data_sources/055bc4b791f13c0bdcb07bed1d907b91.png)
-
-**Setup:**
-
-1. Integration Points Profile
-
-   1.  Please, re-use profile creation steps documented for Microsoft Exchange above OR re-use existing “Microsoft Office 365 Profile” profile. 
-       
-       > **IMPORTANT:** Ensure import option is set to Append/Overlay.
-   
-2.  Create Relativity Native Data Extraction Data Source
-
-    1.  Go to the `Trace` -> `Data Sources` tab and Click the “New Data Source” button
-
-    2.  Set the Name = for example, “Native Data Extraction”
-
-    3.  Select Ingestion Profile created in Step 1
-
-    4.  Select Data Source Type: “Relativity Native Data Extraction”
-
-    5.  Ignore Username field
-
-    6.  Ignore Password field
-
-    7.  Ignore Start Date field
-
-    8.  Ignore End Data field
-
-    9.  You have the option to leave the Data Source as Enabled or Disabled
-
-3.  Fill out [Data Source Specific Settings](#data-source-specific-settings) and click Save
-    
-    -   **Batch Size:** The maximum number of Original Native files to group into a single Data Batch
-
-**Content**
-
-Extracted text and metadata for submitted Native files and all children documents expanded from containers/archives. Please, refer to [Appendix B](#appendix-b-trace-document-extraction-fields) for field descriptions.
-
-
-Re-extraction of child documents from containers (emails, zips, archives) will generate duplicate child documents (old children will be dropped off the family group) if they already exist in the workspace.
-{: .warn }
-
-Containers with many children documents (and nested containers) could produce significant number of expanded items in Relativity.
-{: .warn }
-
-**Limitations**
-
-Relativity Native Data Extraction Data Source do not support [Deduplication](#deduplication-data-transformation). Deduplication transformations must be unlinked before the Data Source can be enabled.
-
-
-Discovery of Monitored Individuals
---------------------------------------------
+### Discovery of Monitored Individuals
 
 Some Data Sources combine data from several places into a single import flow. In that scenario, it may not be clear which Monitored Individual is the source of a given document and no Monitored Individual will be tagged. To address this issue, Trace has introduced the `Discover Monitored Individuals` option on every Data Source. If enabled, Trace will look inside of the document and tag Monitored Individuals defined on the Data Source if they are found in headers inside the document. Monitored Individuals are recognized by identifier and all secondary identifiers. 
 
@@ -363,14 +246,14 @@ To ignore case in the entire email address during Monitored Individual discovery
 
 ![](media\data_sources\updated_data_source_specific_fields.png)
 
-### Monitored Individual Discovery On Merge1 Data Sources
+**Monitored Individual Discovery On Merge1 Data Sources**
 
 Merge1's EWS Data Source only looks for Monitored Individuals in the `X-UserMailbox` header of an email. This header is provided by Merge1 and typically contains exactly one Monitored Individual.
 
-### Monitored Individual Discovery On Other Data Sources
+**Monitored Individual Discovery On Other Data Sources**
 
 All other data sources discover Monitored Individuals based on the `FROM`, `TO`, `CC`, and `BCC` headers. Any Monitored Individual on the Data Source with an identifier (primary or secondary) contained in any of these headers will be associated with the document.
 
-### Supported File Formats
+**Supported File Formats**
 
-Discovery of monitored individuals is based on finding the email addresses of monitored individuals in the headers of an email file. Therefore, it will only work properly on .eml, .msg, and .rsmf (Relativity Short Message Format) files. Any other file format is not currently supported.
+Discovery of monitored individuals is based on finding the email addresses of monitored individuals in the headers of an email file. Therefore, it will only work properly on `.eml`, `.msg`, and `.rsmf` (Relativity Short Message Format) files. Any other file format is not currently supported.

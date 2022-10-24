@@ -25,6 +25,176 @@ New features, enhancements, and defect fixes are released in each monthly update
 **General Compatibility:** Transfer API Services RAP (for Trace Shipper): 1.0.1.11
 {: .info}
 
+# 15.7.0.0 (11 October 2022)
+
+**Features**
+
+- Added broad support for Journal Wrapped Email files extracted from archives to ensure metadata robustness and accuracy
+- Validation will be performed when saving a new Term, to ensure the dtSearch syntax on the term is valid for searching
+ 
+**Enhancements**
+
+- Improved error reporting when performing Trade Reconstruction
+- Reduced data ingestion speeds through enhancements to automated retry process
+
+**Defect Fixes**
+
+- Fixed issue with the "Optional" condition in Trade Reconstruction Configurations did not function properly
+- Fixed defect that caused AI Text Cleansing for Relativity Short Message Format (RSMF) messages to occasionally fail
+
+# 15.6.40.0 (6 Sept 2022)
+
+**Features**
+
+- The following pre-build risk detection AI models can be enabled within our Machine Learning framework to identify key misconduct:
+  - Prearranged Trading Detection
+  - Price and Benchmark Fixing Detection
+  - Front Running Detection
+  - Mirror Trading Detection 
+  - Trade Fixing Detection
+
+**Enhancements**
+
+- Expand Trace AI Text Cleansing to remove disclaimers, Join and Leave tags, usernames, headers, and timestamps from chat data in the Relativity Short Message Format (RSMF) 
+- Added support for publicly accessible SFTP, alongside our more secure SFTP with VPN approach
+
+**Defect Fixes**
+- Fixed known issues with Language Identification Transformation `Trace Other Languages` results
+- Fixed known issues with Machine Learning Model Data Mapping and Tab
+
+# 15.5.11.0 (2 Aug 2022)
+
+**Features**
+
+- The following pre-build irrelevant content detection AI models can be enabled within our Machine Learning framework to further reduce false-positive alerts:
+  - Newsletter Detection: detect widely disseminated and recurring messages that summarize world and financial market news
+  - Financial Research Report Detection: detect widely disseminated documents prepared by investment research firms that describe a company and often provide a particular recommendation
+- Identify financial products (tickers, stocks, companies), pharmaceutical products (drugs, chemicals, competitors), or projects (names, lists) mentioned in communications using [Product Identification]({{ site.baseurl }}{% link docs/administrator_guide/enrichment/data_transforms.md %}) to create more targeted alerts, provide greater context for reviewers, or expose trends for investigation
+
+**Enhancements**
+
+- Excluded certain communications from "Non-Alerted Document Review Report" [Notifications]({{ site.baseurl }}{% link docs/administrator_guide/reporting/notifications.md %}) using the `Trace Type` field value to reduce false positive notifications
+
+**Defect Fixes**
+- Fixed known issues with Language Identification Transformation `Trace Other Languages` results
+- Fixed known issues with Machine Learning Model Data Mapping and Tab
+
+# 15.3.32.0 (31 May 2022)
+
+**Features**
+
+- Identifying the languages used within a communication and the detection of language switching is now enabled by default with no need for configuration within Structured Analytics.
+- Spam detection is now automatically run across all communications without the need for configuration through Active Learning.
+
+# 15.4.14.0 (28 June 2022)
+
+**Features**
+
+- The following pre-built risk detection AI models can be enabled within our new Machine Learning framework: 
+  - Change of Venue: an attempt to avoid discovery by changing the communication venue (e.g., moving from email to phone call)
+  - Rumors and Speculation: the distribution or discussion of unverified and doubtfully true information 
+  - Collaborative Discussion: employees working together to prevent the discovery of misconduct and sharing of client identifying data
+  - Boasting: excessively proud and self-satisfied talk by a trader of their achievements in regard to someone less fortunate
+  - General Tipping: the sharing of potential material nonpublic information (MNPI) regarding general company information, financial information, or corporate actions 
+- Customers can define and implement their own AI models through our self-service Machine Learning framework to detect risky or irrelevant content
+
+**Enhancements**
+
+- The Data Source auto-disable time period can now be set per Data source rather than across all Data Sources
+
+# 15.3.32.0 (31 May 2022)
+
+**Features**
+
+- Identifying the languages used within a communication and the detection of language switching is now enabled by default with no need for configuration within Structured Analytics.
+- Spam detection is now automatically run across all communications without the need for configuration through Active Learning.
+
+**Enhacements**
+
+- Expanded the audio metadata formats accepted (past JSON)
+- Made it easier to use the Cleansed Extracted Text for alerting by configuring this on Term Searching Task rather than in the `Trace All Documents` saved search. 
+ 
+ **Defect Fixes**
+
+- Fixed an issue with our in-house O365 Mail and Calendar data source, where email data that is created and moved to the Archive folder (mailbox) between Data Retrieval task runs is not collected (fixed through the introduction of the separate O365 Archive data source)
+
+# 15.2.0.0 (19 April 2022)
+
+**Enhancements**
+- Simplified the process of data source creation in Trace to minimize possible configuration error, speed implementation time and reduce need for specialist support
+- Enabled cloud-to-cloud support for Thomson Reuters Chat
+- Introduced capabilities to accept different formats of Audio files
+
+# 15.1.23.0 (15 March 2022)
+
+**Features**
+
+- A Reviewer can now email a monitored individual directly within the system to let them know that they are in breach of a policy or to get more information about an event.
+- Communications are now classified as either being sent or received from a personal email address (gmail, yahoo, etc.), so it’s easier to identify scenarios where employees are sending corporate content outside the organization either to themselves or others.
+- To accelerate the pace at which reviewers can clear alerts, we’ve added the ability to set default review decisions that are automatically populated when a communication is viewed.
+
+**Enhancements**
+ 
+- Improved our Password Bank functionality to specify when a document was encrypted but was successfully decrypted using one of the passwords. This allows for compliance teams to better understand the volume of communications that are being encrypted as a potential risk indicator.
+- Ability to see communications that exist within the same email thread in the relational pane in the viewer after Email Thread Deduplication is performed. This reduces the need for running the Email Threading Structured Analytics operation.
+- Added more detailed auditing for when a Trade Reconstruction action is performed to capture the links made between a trade and all its related communications. This enables users to review historic Trade Reconstruction results regardless of whether they’ve rerun the operation.
+
+# 15.0.10.1 (8 February 2022)
+
+**Features**
+
+- Rule change report: Generate a report that can also be sent via email whenever a change is made to a rule so that compliance can monitor those who have permissions to update controls for any types of misconduct.
+- System Health Report: Generate a report that can also be sent via email whenever a current task status failure occurs so that compliance can monitor system performance or if something is not working as anticipated. 
+- Expanded ZipDrop data sources to be able to collect non-communication data (structured data) such as terms, trades, human resource information, or expense data.
+
+**Enhancements**
+ 
+- Enabled support for GSuite Cloud-to-Cloud Connection 
+- A new Trace Email Action field can be used within Rules to alert differently on Sent, Forwarded, Replies, Replies to All, or Draft emails to further pinpoint risk and reduce false positive alerts
+- Improved the viewer experience for cleansed block highlighting by no longer highlighting the header envelop
+- Add new fields to NonAlerted Document Notification Reports
+
+**Defect Fixes**
+
+- Fixed an issue where block highlighting fails when switching back documents too fast
+
+# 14.7.2.2 (20 December 2021)
+
+**Features**
+
+- Trace added functionality to track if team members viewed documents that should not have been viewed, Trace will send an email report or real-time notifications regarding privacy issues
+- Automated management of Monitored Individuals with Azure Active Directory 
+- Added Trace Surveillance Policies to identify risk and misconduct that contains lexicons specifically used in audio, in order to aid current out of the box policies. This will allow for better alerting and less false positives. 
+
+**Enhancements**
+ 
+- Enabled support for Slack Cloud-to-Cloud Connection 
+- Developed an easy and quick way to view what data soruce a document is sourced from
+
+**Defect Fixes**
+
+- Fixed Persistent Highlighting issue where go to next highlight functionality does not work when block highlighting is collapsed  
+- Fixed an AI Cleansing failing issue that caused documents to not be parsed, this is not a failure though because the system defaults to alerting on Extracted Text as Trace always has 
+
+# 14.6.0.0 (9 November 2021)
+
+**Features**
+
+- Enhanced metadata filtering within Trace Surveillance Policies to further reduce false-positive alerts
+- Added a Trace Surveillance Policy that targets risks associated with financial services employees discussing content on social platforms like Twitter and Reddit. This policy is based on recent regulatory discussions around social platform’s influence on market trading 
+- Added Trace Surveillance Policies in Dutch to identify misconduct within global organizations 
+
+**Enhancements**
+ 
+- Change sort order on the documents list within the Rules layout to show the most recent alerts first  
+- Enabled support for Cloud9 Audio for in-house collection, transcription generation, and review 
+- Enabled support for O2 Cloud Audio for in-house collection, transcription generation, and review 
+
+**Defect Fixes**
+
+- Fixed a rare issue where Data Batch metadata is not updated when the Data Batch completes 
+- Fixed an issue where the Data Batch “Job Completion Error” field is overwritten by a generic message after an error occurs 
+
 # 14.5.3.1 (5 October 2021)
 
 **Features**

@@ -19,15 +19,14 @@ Documents get a status as they progress through the data flow.
 ---
 
 ## Status Descriptions
-Trace has a six-step Document analysis process. Status is tracked on the `Trace Document Status` field. When a document status is changed the timestamp on the `Trace Document Status Updated On` field is updated.
+Trace has a six-step Document Analysis process. Status is tracked on the `Trace Document Status` field. When a document status is changed the timestamp on the `Trace Document Status Updated On` field is updated.
 
 | Step | Status                 |  Type        | Overview                                                    |
 | :--: | ----------------------- |------------|------------------------------------------------------------ |
 |  1   | NEW                     | Transient  | Documents that are brand new to the workspace and are part of `Trace All Documents` saved search. Documents not included in the `Trace All Documents` saved search will not be included in the data flow. |
 |  2   | INDEXED                 | Transient  | Documents that have been successfully indexed. |
 |  3   | TERM SEARCHED           | Transient  | Documents where Terms have been successfully searched for. |
-|  4   | NORMALIZED              | Transient  | Documents that meet the criteria of the `Normalized Saved Search` configuration in the `Rule Evaluation` task. <br/><br/>**NOTE:** Documents can only be moved to the `Normalized status` if they and all their family members are in the `Term Searched` status.<br/><br/>**NOTE:** If `Normalized Saved Search` is not configured, documents will move to `Normalized` once they and all their family members have the `Term Searched` status.
- |
+|  4   | NORMALIZED              | Transient  | Documents that meet the criteria of the `Normalized Saved Search` configuration in the `Rule Evaluation` task. <br/><br/>**NOTE:** Documents can only be moved to the `Normalized status` if they and all their family members are in the `Term Searched` status.<br/><br/>**NOTE:** If `Normalized Saved Search` is not configured, documents will move to `Normalized` once they and all their family members have the `Term Searched` status. |
 |  5   | READY FOR RULE ANALYSIS | Terminal   | Documents that have the `Normalized` status and don't meet the criteria of the `Omit from Alert Rules Saved Search` configured in the `Rule Evaluation` task. Both `Alert` and `Workflow` `Rules` will analyze documents with the `Ready for Rules` status. |
 |  6   | ALERT RULES COMPLETE    | Terminal   |Parent Document that meet the criteria of the `Omit from Alert Rules Saved Search` configuration in the `Rule Evaluation` task and all of their children. `Alert Rules` will NOT analyze these documents. <br/><br/>**NOTE:** If ``Omit from Alert Rules Saved Search`` is not configured, no documents will be marked with the `Alert Rules Complete` status. |
 
