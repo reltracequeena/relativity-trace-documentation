@@ -2,7 +2,7 @@
 layout: default
 title: Fields
 parent: Administrator Guide
-nav_order: 11
+nav_order: 13
 ---
 
 # Fields
@@ -114,7 +114,7 @@ Trace automatically extracts metadata information for Microsoft Office 365 Data 
 
 -   `Calculated` – fields that are calculated dynamically by Trace
 
-| **Trace Field Category** | **Relativity Field**          | **Field Type**    | **Field Description**                                        |
+| **Trace Field Information** | **Relativity Field**          | **Field Type**    | **Field Description**                                        |
 | ------------------------ | ----------------------------- | ----------------- | ------------------------------------------------------------ |
 | Email Only               | Attachment List               | Long Text         | Attachment file names of all child items in a family group, delimited by semicolon, only present on parent items. |
 | Email Only               | BCC                           | Long Text         | The name(s) (when available) and email address(es) of the Blind Carbon Copy recipient(s) of an email message. |
@@ -170,14 +170,18 @@ Trace automatically extracts metadata information for Microsoft Office 365 Data 
 | Calculated               | Number of Attachments         | Decimal           | Number of files attached to a parent document.               |
 | Calculated               | Other Metadata                | Long Text         | Additional metadata extracted during processing beyond the list of standard fields available for mapping. See the "Read From Other Metadata Column" setting on Data Mappings to import values from Other Metdata to a field in Relativity. |
 | Calculated               | Parent Document ID            | Fixed-Length Text | Document ID (Control Number) of the parent document. Empty for top level (original native) documents. For multiple levels of descendants, this field will always be populated with the Document ID (Control Number) of the top level (original native) document for every descendant document. |
-| Calculated               | Password Protected            | Single Choice     | Indicates the documents that were password protected. It contains the value Decrypted if the password was identified, Encrypted if the password was not identified, or no value if the file was not password protected. |
+| Calculated               | Password Protected            | Single Choice     | Indicates the documents that were password protected. It contains the value False if the file was not password protected, True if the file was password protected and could not be cracked using passwords specified in the Password Bank, or Decrypted if the file was password protected and was decrypted using a matching password from the Password Bank.|
 | Calculated               | Recipient Count               | Decimal           | The total count of unique recipients in an email across the To, CC, and BCC fields |
 | Calculated               | Trace Data Transformations    | Multiple Object   | Data Transformations that have been applied to the document. **NOTE:** `AI Extracted Text Cleansing` Data Transforms are not currently being added to this field when they are applied to a document. This will be fixed in a subsequent release. `Deduplication` Data Transforms will never be added to this field because deduplicated documents are not ingested into Relativity Trace.  |
 | Calculated               | Trace Document Hash           | Fixed-Length Text | Calculated hash value that is used to determine if a document is a duplicate of another document. Original documents use a partial hash of metadata, while extracted documents use a binary hash. |
 | Calculated               | Trace Error Details           | Long Text         | Details of errors encountered during the extraction/expansion |
 | Calculated               | Trace Has Errors              | Yes/No            | Indicates if any errors occurred during extraction/expansion |
 | Calculated               | Trace Monitored Individuals   | Multiple Object   | Monitored individuals associated with Data Source (used for retrieval and billing) |
-| Calculated               | Trace Exempt              | Yes/No            | Indicates exempt list data transformation classification |
-| Calculated               | Trace Communication Direction           | Fixed-Length Text | Indicates communication direction data transformation classification (Internal |
-| Calculated               | Trace Is Extracted           | Yes/No | Indicates whether a document is a Native or was Extracted |
-
+| Calculated               | Trace Exempt                  | Yes/No            | Indicates exempt list data transformation classification |
+| Calculated               | Trace Communication Direction | Fixed-Length Text | Indicates communication direction data transformation classification (Internal |
+| Calculated               | Trace Is Extracted            | Yes/No            | Indicates whether a document is a Native or was Extracted |
+| Calculated               | Trace Email Action            | Single Choice     | Describes the type of email as either Draft, Send, Forward, Reply, Reply-All, or Empty meaning the document is not an email |
+| Calculated               | Trace Primary Language        | Fixed-Length Text | Describes the primary language used in a communication |
+| Calculated               | Trace Other Languages         | Fixed-Length Text | Describes the type other language used in a communication |
+| Calculated               | Trace Language Switching Detected| Yes/No         | Describes if language switching (multiple languages used) occurs in a communication|
+| Calculated               | Trace Is Spam                 | Yes/No            | Describes if a communication is `Spam` or `Not Spam` |

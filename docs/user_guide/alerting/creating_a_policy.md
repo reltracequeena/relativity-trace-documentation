@@ -20,7 +20,7 @@ You can manually create or update a surveillance policy to indentify risk specif
 
 ## Overview
 
-Alert Rules allow users to define the criteria for a surveillance policy. These Rules are executed on periodic basis at pre-configured intervals, allowing users to automatically and continously categorize and tag documents as they are ingested into the workspace.
+Alert Rules allow users to define the criteria for a surveillance policy. These Rules are executed on periodic basis at pre-configured intervals, allowing users to automatically and continuously categorize and tag documents as they are ingested into the workspace.
 
 `Workflow` Rules operate the same way as `Alert` Rules, but are intended to trigger an [Action]({{ site.baseurl }}{% link docs/administrator_guide/actions.md %}) rather than generate an alert for a user.
 {: .info }
@@ -29,7 +29,7 @@ Alert Rules allow users to define the criteria for a surveillance policy. These 
 
 Create a new [rule](#_Glossary) by clicking `New Rule` on the `Trace`:`Rules` tab
 
-![1571081144550](media/alert_rules/1571081144550.png)
+![1571081144550](media/rules/1571081144550.png)
 
 The Rule Creation form contains the following fields:
 
@@ -60,7 +60,7 @@ Default actions shipped with Trace out of the box are meant as examples and are 
 
 After you create a Rule, use the Rule definition page to associate Terms and Enable/Disable the rule.
 
-![1571079859530](media/alert_rules/1571079859530.png)
+![1571079859530](media/rules/1571079859530.png)
 
 ### Terms
 
@@ -79,7 +79,7 @@ A Rule will only execute when it is enabled. If a Rule is disabled while running
 
 After Rule executes, documents matching the Rule will be associated to the Rule itself.
 
-![1571081067899](media/alert_rules/1571081067899.png)
+![1571081067899](media/rules/1571081067899.png)
 
 ### Terms
 
@@ -89,13 +89,13 @@ In addition to metadata conditions of a Saved Search associated with Rule, you c
 
 You can create Terms in multiple ways:
 
-1.  Via [Remote Desktop Client ( RDC )](https://help.relativity.com/9.6/Content/Relativity/Relativity_Desktop_Client/Relativity_Desktop_Client.htm) load file. This method is ideal if you are adding a lot of terms at once.
+1.  Via [Relativity Desktop Client ( RDC )](https://help.relativity.com/9.6/Content/Relativity/Relativity_Desktop_Client/Relativity_Desktop_Client.htm) load file. This method is ideal if you are adding a lot of terms at once.
     
 2.  From Terms tab by clicking “New Term” and adding each Term individually.
 
 3.  By clicking the New button on the Terms section of the Rule Layout.
 
-![](media/alert_rules/e2a523416ac9607f8b2e9f42e2287e0f.png)
+![](media/rules/e2a523416ac9607f8b2e9f42e2287e0f.png)
 
 Term definition contains 3 fields:
 
@@ -107,10 +107,15 @@ Term definition contains 3 fields:
 
 In addition, you can see and modify Term Categories and Rules associated with Term and its status with regards to execution
 
-![](media/alert_rules/5b46e7806548749e50586196d43aa468.png)
+![](media/rules/5b46e7806548749e50586196d43aa468.png)
 
 The Term “Name” (actual text being searched) **cannot** be modified after it is created. You must remove and add a new term object to change the search string. You **can** modify the highlight color and term category of an existing term.
 {: .info }
 
 The Term “Name” (actual text being searched) is limited to 450 characters. Please reach out [support@relativity.com](mailto:support@relativity.com) if your use-case requires higher limits for your terms.
 {: .info }
+
+The user cannot create a Term with incorrect syntax.
+{: .info}
+
+![](media/rules/Term_incorrect_syntax.png)

@@ -54,9 +54,19 @@ back_to_top_text: "Back to top"
 # Aux links for the upper right navigation
 aux_links:
   "Contact Support":
-    - "mailto:support@relativity.com"
+    - "https://community.relativity.com/s/contactsupport"
+
+# Google Analytics Tracking
+ga_tracking: G-SLDX7MX93N # See Peter Haller for account information
+ga_tracking_anonymize_ip: true # Use GDPR compliant Google Analytics settings (true/nil by default)
+
 
 kramdown:
   syntax_highlighter_opts:
     block:
       line_numbers: false
+      
+mermaid:
+  # Version of mermaid library
+  # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
+  version: "9.1.6"
